@@ -8,9 +8,10 @@ class App extends React.Component {
   constructor(props){
     super(props)
     this.state = {
-      input:'',
-      // userInput:'',
-      tasks:['cdcdf','dfdf']
+      task:{
+        text:''
+      },
+      tasks:[]
     }
     this.addingTasks = this.addingTasks.bind(this)
     this.inputHandler = this.inputHandler.bind(this)
@@ -18,15 +19,20 @@ class App extends React.Component {
 
   inputHandler(e){
     this.setState({
-      input:e.target.value
+      task:{
+        text:e.target.value
+      }
+        
     })
   }
 
   addingTasks(){
     
     this.setState(state => ({
-      tasks:[...state.tasks, state.input],
-      input:''
+      tasks:[...state.tasks, state.task],
+      task:{
+        text:''
+      }
     }))
   }
 
@@ -42,7 +48,7 @@ class App extends React.Component {
         className='task-input' 
         type="text"
         placeholder="Running..."
-        value={this.state.input}
+        value={this.state.task.text}
         onChange={this.inputHandler}
 
         />

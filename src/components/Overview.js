@@ -10,7 +10,7 @@ import React from 'react'
 
 class RenderView extends React.Component{
     render(){
-        const tasksList = this.props.tasks.map((item,index)=> <li key={index}>{item}</li>)
+        const tasksList = this.props.tasks.map((item,index)=> <li key={index}>{item.text}</li>)
         // console.log(this.props.tasks)
         return (
             <div>
