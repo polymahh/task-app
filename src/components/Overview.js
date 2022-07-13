@@ -9,13 +9,33 @@ import React from 'react'
 // }
 
 class RenderView extends React.Component{
+    // constructor(props){
+    //     super(props)
+
+    //     // this.props.deleteTask = this.props.deleteTask.bind(this)
+    // }
+
+    // deleteTask(e){
+    //     console.log(e)
+    // } 
+    
     render(){
-        const tasksList = this.props.tasks.map((item,index)=> <li key={index}>{item.text}</li>)
+        
+        const tasksList = this.props.tasks.map((task,index)=> 
+        <div key={task.id}>
+        <li >{index}-{task.text}</li>
+        <button id={task.id} onClick={this.props.deleteTask}>X</button>
+        </div>
+        );
+
+        
+
+
         // console.log(this.props.tasks)
         return (
             <div>
 
-                <p>thes are the tasks</p>
+                <p>Thess Are Your Tasks</p>
                 <ul>
                     {tasksList}
                 </ul>
