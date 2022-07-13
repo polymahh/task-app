@@ -11,20 +11,23 @@ class App extends React.Component {
     this.state = {
       task:{
         text:'',
-        id: uniqid()
+        id: uniqid(),
+        edit:false
       },
       tasks:[]
     }
     this.addingTasks = this.addingTasks.bind(this)
     this.inputHandler = this.inputHandler.bind(this)
     this.delete = this.delete.bind(this)
+    this.editTask = this.editTask.bind(this)
   }
 
   inputHandler(e){
     this.setState({
       task:{
         text:e.target.value,
-        id: this.state.task.id
+        id: this.state.task.id,
+        edit:false
       }
         
     })
@@ -36,7 +39,8 @@ class App extends React.Component {
       tasks:[...state.tasks, state.task],
       task:{
         text:'',
-        id:uniqid()
+        id:uniqid(),
+        edit:false
       }
     }))
   }
@@ -50,13 +54,23 @@ class App extends React.Component {
     console.log(this.state.tasks)
   }
 
+  editTask(e){
+    let newArr = this.state.tasks.slice()
+    let clickedTask = newArr.find((task)=> task.id === e.target.id)
+    clickedTask.edit = !clickedTask.edit
+    this.setState({
+      tasks : newArr
+    })
+    console.log(newArr)
+  }
+
   
   render(){
   
   
   return (
     <div className="App">
-      <RenderView tasks={this.state.tasks} deleteTask={this.delete}/>
+      <RenderView tasks={this.state.tasks} deleteTask={this.delete} editTask={this.editTask}/>
       
       <input 
         className='task-input' 
